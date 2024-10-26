@@ -1,0 +1,38 @@
+
+<h1>Bienvenido al Sistema</h1>
+<button (click)="logout()">Cerrar Sesión</button>
+
+<br>
+
+<h2>Agregar Nuevo Dispositivo</h2>
+<form (ngSubmit)="agregarTenologia()" #tecnologiaForm="ngForm">
+  <label for="nombre">Marca:</label>
+  <input type="text" id="nombre" [(ngModel)]="nuevaTecnologia.nombre" name="nombre" required>
+
+  <label for="categoria">Modelo:</label>
+  <input type="text" id="categoria" [(ngModel)]="nuevaTecnologia.categoria" name="categoria" required>
+
+  <button type="submit">Agregar</button>
+</form>
+
+
+<div *ngIf="tecnologia && tecnologia.length > 0; else noDispositivos">
+  <h2>Lista de Dispositivos:</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Categoria</th>
+    </tr>
+    <tr *ngFor="let tecno of tecnologia">
+      <td>{{ tecno.id }}</td>
+      <td>{{ tecno.nombre }}</td>
+      <td>{{ tecno.categoria }}</td>
+    </tr>
+  </table>
+</div>
+
+<ng-template #noDispositivos>
+  <p>No hay Dispositivos disponibles.</p>
+</ng-template>
+
